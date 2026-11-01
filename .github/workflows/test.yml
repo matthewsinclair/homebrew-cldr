@@ -12,8 +12,24 @@ permissions:
   contents: read
 
 jobs:
+  formula:
+    name: formula present
+    runs-on: ubuntu-24.04
+    outputs:
+      present: ${{ steps.look.outputs.present }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: look
+        run: |
+          if [ -f Formula/cldr.rb ]; then present=true; else present=false; fi
+          echo "present=$present" >> "$GITHUB_OUTPUT"
+
   install:
     name: ${{ matrix.runner }}
+    needs: formula
+    if: needs.formula.outputs.present == 'true'
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 30
     strategy:
