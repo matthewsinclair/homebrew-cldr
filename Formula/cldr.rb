@@ -2,8 +2,8 @@
 class Cldr < Formula
   desc "Re-runnable renderer for a plain-text time journal"
   homepage "https://github.com/matthewsinclair/cldr"
-  url "https://github.com/matthewsinclair/cldr/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "2e60bb601bde505611a918cce1fadd3f5b568a86bbe4db3536a7e3586bb9946e"
+  url "https://github.com/matthewsinclair/cldr/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "6eaf1c5036b975882f27b07e621461eca54f164a3018bfd9d29875cfed5cc661"
   license "MIT"
   head "https://github.com/matthewsinclair/cldr.git", branch: "main"
 
