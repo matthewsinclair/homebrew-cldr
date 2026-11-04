@@ -35,7 +35,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [macos-15, ubuntu-24.04]
+        # macOS alone: the formula installs cldr's signed macOS asset, for
+        # Apple silicon, and there is no Linux asset to install
+        runner: [macos-15]
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_INSTALL_CLEANUP: "1"
@@ -46,6 +48,7 @@ jobs:
           stable: true
       - run: brew style matthewsinclair/cldr/cldr
       - run: brew audit --strict matthewsinclair/cldr/cldr
-      - run: brew install --build-from-source matthewsinclair/cldr/cldr
+      # The release's asset is signed and prebuilt; there is nothing to build
+      - run: brew install matthewsinclair/cldr/cldr
       - run: brew test --verbose matthewsinclair/cldr/cldr
       - run: cldr --version
