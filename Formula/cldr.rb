@@ -2,13 +2,13 @@
 # below and the commit it names: edit the template, not this file, which the
 # next render replaces.
 #   template  packaging/homebrew/cldr.rb
-#   tag       v0.2.1
-#   commit    3b37c6b4ee8615575a343d235f5e5bb9c2124ab7
+#   tag       v0.2.2
+#   commit    56af07aa0d202d7c59d324981e071daad820351f
 class Cldr < Formula
   desc "Re-runnable renderer for a plain-text time journal"
   homepage "https://github.com/matthewsinclair/cldr"
-  url "https://github.com/matthewsinclair/cldr/releases/download/v0.2.1/cldr-0.2.1-aarch64-apple-darwin.tar.gz"
-  sha256 "89a13e3d4496ca1560d90da482abc685778e89adb355315b737f3daccbd88f64"
+  url "https://github.com/matthewsinclair/cldr/releases/download/v0.2.2/cldr-0.2.2-aarch64-apple-darwin.tar.gz"
+  sha256 "fc6ac36196c02bc29fc771d23c497789e717ea197ace34c5e8d7ef555f160e11"
   license "MIT"
 
   # macOS on Apple silicon: cldr reads BusyCal's store
@@ -39,7 +39,7 @@ class Cldr < Formula
     files = Dir.glob("**/*", File::FNM_DOTMATCH, base: libexec).select do |f|
       (libexec/f).file? && !(libexec/f).symlink? && f != ".cldr-install"
     end
-    lines = ["# tool: cldr", "# version: 0.2.1", "# source_commit: 3b37c6b4ee8615575a343d235f5e5bb9c2124ab7", "# managed_by: brew"]
+    lines = ["# tool: cldr", "# version: 0.2.2", "# source_commit: 56af07aa0d202d7c59d324981e071daad820351f", "# managed_by: brew"]
     lines += files.sort.map { |f| "#{(libexec/f).sha256}  #{f}" }
     (libexec/".cldr-install").write("#{lines.join("\n")}\n")
     bin.install_symlink libexec/"bin/cldr"
